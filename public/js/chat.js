@@ -14,7 +14,7 @@ function scrollToButton() {
   console.log(clientHeight , scrollTop , newMessageHeight , lastMessageHeight);
   console.log(scrollHeight)
   if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
-    console.log('should scroll');
+        messages.scrollTop(scrollHeight)
   }
 }
 socket.on('connect', function() {
