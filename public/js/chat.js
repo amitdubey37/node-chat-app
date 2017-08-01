@@ -11,6 +11,8 @@ function scrollToButton() {
   var scrollHeight = messages.prop('scrollHeight');
   var newMessageHeight = newMessage.innerHeight();
   var lastMessageHeight = newMessage.prev().innerHeight();
+  console.log(clientHeight , scrollTop , newMessageHeight , lastMessageHeight);
+  console.log(scrollHeight)
   if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
     console.log('should scroll');
   }
