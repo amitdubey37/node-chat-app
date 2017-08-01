@@ -22,9 +22,14 @@ io.on('connection', (socket) => {
 
 
   socket.on('join', (params, callback) =>  {
-      if( !isRealString(params.name) || !isRealString(params.room)) {
+    var userName = params.name
+      if( !isRealString(userName) || !isRealString(params.room)) {
         console.log('inside if')
         return callback('Name and room name are required');
+      }
+      var allUsers = users.getUserList(params.room);
+      if(allUsers.filter((user) => user === userName).length>0) {
+        return callback(`A user with name ${userName} is already in ${params.room}`);
       }
       socket.join(params.room);
       users.addUser(socket.id, params.name, params.room);
