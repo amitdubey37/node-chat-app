@@ -11,8 +11,6 @@ function scrollToButton() {
   var scrollHeight = messages.prop('scrollHeight');
   var newMessageHeight = newMessage.innerHeight();
   var lastMessageHeight = newMessage.prev().innerHeight();
-  console.log(clientHeight , scrollTop , newMessageHeight , lastMessageHeight);
-  console.log(scrollHeight)
   if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
         messages.scrollTop(scrollHeight)
   }
@@ -47,7 +45,7 @@ socket.on('updateUserList', function(users) {
 })
 
 socket.on('newMessage', function(message) {
-  var formattedTime = moment(message.createdAt).format('h:mm');
+  var formattedTime = moment(message.createdAt).format('h:mm a');
   // var li = $('<li></li>')
   // li.text(`${message.from} ${formattedTime}: ${message.text}`)
   // $('#messages').append(li);
@@ -63,7 +61,7 @@ socket.on('newMessage', function(message) {
 
 socket.on('newLocationMessage', function(message) {
   console.log('message', message)
-  var formattedTime = moment(message.createdAt).format('h:mm');
+  var formattedTime = moment(message.createdAt).format('h:mm a');
   var template = $('#location-message-template').html();
   var html = Mustache.render(template, {
     url: message.url,
