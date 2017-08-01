@@ -37,7 +37,14 @@ socket.on('updateUserList', function(users) {
 
   users.forEach(function(user, i) {
     console.log('called', i)
-    ol.append($('<li></li>').text(user));
+    var li = $('<li></li>');
+    if(user === $.deparam(window.location.search).name) {
+      li.addClass('active');
+      li.text('You')
+    } else {
+      li.text(user)
+    }
+    ol.append(li);
   })
 
 
